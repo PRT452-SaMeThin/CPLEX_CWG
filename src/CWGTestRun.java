@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.Scanner;
+
 import ilog.concert.*;
 import ilog.cplex.*;
 
@@ -5,73 +8,204 @@ public class CWGTestRun {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// printMatrix();
-		// tryIOData();
+		printInputMatrix();
+		//CWGIOData.printData();
+		printMatrixList();
+		//System.out.println(X[1][1]);
+		//printEdges();
 		model1();
 	}
 
-	private static int numVertices = 5;
-	private static int[][] X = new int[numVertices][numVertices];
-	private static int Ncol = numVertices * (numVertices - 1) / 2;
+	//private static int Ncol = numVertices * (numVertices - 1) / 2;
+	public static int[][] X;
+	public static int numVertices;
+	public static int numEdges;
+	static String pathName = "/Users/Sancho/Desktop/test.txt";
 
-	// Set constraint 0 <= Xij <= 1
-	public void setConstraint() {
-		for (int i = 1; i < Ncol + 1; i++) {
-
-		}
-	}
-
-	public static void tryIOData() {
-		CWGIOData example1 = new CWGIOData();
-		example1.inputData();
-	}
-
-	// Print Matrix
-	public static void printMatrix() {
-
-		X[1][2] = 1;
-		X[1][4] = 1;
-		X[0][4] = 1;
-		X[2][1] = 1;
-		X[2][4] = 1;
-		X[4][0] = 1;
-		X[4][1] = 1;
-		X[4][2] = 1;
+	public static void printMatrixList() {
 
 		for (int i = 0; i < numVertices; i++) {
-			for (int j = 0; j < numVertices; j++) {
-				System.out.print(X[i][j] + " ");
+			for (int k = i + 1; k < numVertices; k++) {
+				for (int j = 0; j < numVertices; j++) {
+					if (i != j && j != k) {
+						if (X[i][k] > X[i][j] + X[j][k]) {
+							System.out.print(X[i][k] + "<=" + X[i][j] + "+" + X[j][k] + ": ");
+							System.out.println("X[" + i + "][" + k +"] <= X[" + i + "][" + j + "] + X["
+									+ j + "][" + k + "]");
+						}
+						
+					}
+
+				}
 			}
-			System.out.println();
 		}
 	}
+	
+	public static void countNum() {
 
-	// CPLEX implement
+		for (int i = 0; i < numVertices; i++) {
+			for (int k = i + 1; k < numVertices; k++) {
+				for (int j = 0; j < numVertices; j++) {
+					if (i != j && j != k) {
+						if (X[i][k] > X[i][j] + X[j][k]) {
+							
+						}
+						
+					}
+
+				}
+			}
+		}
+	}
+	
+	
+	public static void printEdges() {
+		for (int i = 0; i < numVertices - 1; i++) {
+			for (int j = i + 1; j < numVertices; j++) {
+				System.out.println("X[" + i + "][" + j + "]: " + X[i][j] + " ");
+				// Check if the edge exists
+				if (checkExist(i, j)) {
+					//y = 1;
+				} else {
+					//y = -1;
+				}
+				//System.out.println(y*X[i][j]);
+			}
+		}
+	}
+	
+	public static void printObj() {
+		for (int i = 0; i < numVertices - 1; i++) {
+			for (int j = i + 1; j < numVertices; j++) {
+				System.out.println("X[" + i + "][" + j + "]: " + X[i][j] + " ");
+				// Check if the edge exists
+				if (checkExist(i, j)) {
+					//y = 1;
+				} else {
+					//y = -1;
+				}
+				//System.out.println(y*X[i][j]);
+			}
+		}
+	}
+	
+	// Function for input our data
+	public static void printInputMatrix() {
+		try {
+			File fileName = new File(pathName);
+			Scanner fileInput = new Scanner(fileName);
+			//numVertices = 0;
+			//numEdges = 0;
+			numVertices = fileInput.nextInt();
+			numEdges = fileInput.nextInt();
+			X = new int[numVertices][numVertices];
+			
+			for (int i = 0; i < numVertices; i++) {
+				for (int j = 0; j < numVertices; j++) {
+					X[i][j] = 1;
+				}
+				X[i][i] = 0;
+			}
+			
+			for (int i = 0; i < numEdges; i++) {
+				X[fileInput.nextInt()][fileInput.nextInt()] = 0;
+			}
+			for (int i = numVertices - 1; i >= 0; i--) {
+				for (int j = i - 1; j >= 0; j--) {
+					X[i][j] = X[j][i];
+				}
+			}
+			
+			for (int i = 0; i < numVertices; i++) {
+				for (int j = 0; j < numVertices; j++) {
+					System.out.print(X[i][j] + " ");
+				}
+				System.out.println();
+			}
+			
+			//int[] elementValue = new int[numEdges*2];
+			
+			//for (int i = 0; i < numEdges*2; i++) {
+			//	elementValue[i] = fileInput.nextInt();
+			//}
+			
+			fileInput.close();
+			//System.out.println(numVertices);
+			//System.out.println(numEdges);
+			
+			//for (int j = 0; j < numEdges*2; j++) {
+			//	System.out.println(elementValue[j]);
+			//}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// Function for output data in file
+	public static void printFileData(){
+		try {
+			File fileName = new File(pathName);
+			Scanner fileInput = new Scanner(fileName);
+			String aString = "";
+			boolean Hola = true;
+			while (fileInput.hasNext()) {
+				
+				if (Hola) {
+					aString = aString + fileInput.next() + " ";
+					Hola = false;
+				}
+				else {
+					aString = aString + fileInput.next() + "\n";
+					Hola = true;
+				}
+				
+			}
+			fileInput.close();
+			
+			System.out.println(aString);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static boolean checkExist(int i, int j) {
+		if (X[i][j] == 1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	public static void model1() {
 		try {
 			IloCplex cplex = new IloCplex();
+			cplex.getNcols();
+			cplex.getNrows();
 
 			// Variables
 			IloNumVar[][] x = new IloNumVar[numVertices][numVertices];
+
 			for (int i = 0; i < numVertices; i++) {
-				x[i] = cplex.boolVarArray(i);
+				// x[i] = cplex.boolVarArray(i);
 				x[i] = cplex.numVarArray(numVertices, 0, 1);
 			}
 
 			// Objectives
 			IloLinearNumExpr objective = cplex.linearNumExpr();
-			for (int i1 = 0; i1 < numVertices - 1; i1++) {
-				for (int j = i1 + 1; j < numVertices; j++) {
-					
+			for (int i = 0; i < numVertices - 1; i++) {
+				for (int j = i + 1; j < numVertices; j++) {
+
 					int y = -1;
 
 					// Check if the edge exists
-					if (checkExist(i1, j)) {
+					if (checkExist(i, j)) {
 						y = 1;
 					} else {
 						y = -1;
 					}
-					objective.addTerm(y, x[i1][j]);
+					objective.addTerm(y, x[i][j]);
 				}
 			}
 
@@ -79,16 +213,17 @@ public class CWGTestRun {
 			cplex.addMinimize(objective);
 
 			// Define constraints Xik <= Xij + Xjk
-			for (int i1 = 0; i1 < numVertices; i1++) {
-				for (int k = i1 + 1; k < numVertices; k++) {
+			for (int i = 0; i < numVertices; i++) {
+				for (int k = i + 1; k < numVertices; k++) {
 					for (int j = 0; j < numVertices; j++) {
-						if (i1 != j && j != k) {
-							cplex.addLe(x[i1][k], cplex.sum(x[i1][j], x[j][k]));
+						if (i != j && j != k) {
+							cplex.addLe(x[i][k], cplex.sum(x[i][j], x[j][k]));
 						}
-
 					}
 				}
 			}
+
+			// cplex.setParam(IloCplex.Param.Simplex.Display, 2);
 
 			if (cplex.solve()) {
 				System.out.println("Objective = " + cplex.getObjValue());
@@ -96,16 +231,10 @@ public class CWGTestRun {
 				System.out.println("It cannot be solved");
 			}
 
+			cplex.end();
+
 		} catch (IloException exc) {
 			exc.printStackTrace();
-		}
-	}
-
-	public static boolean checkExist(int i, int j) {
-		if (X[i][j] == 1) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 
