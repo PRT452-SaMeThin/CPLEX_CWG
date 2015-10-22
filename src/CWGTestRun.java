@@ -8,11 +8,9 @@ public class CWGTestRun {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		initialMatix();
 		printInputMatrix();
-		//CWGIOData.printData();
 		printMatrixList();
-		//System.out.println(X[1][1]);
-		//printEdges();
 		model1();
 	}
 
@@ -89,8 +87,8 @@ public class CWGTestRun {
 		}
 	}
 	
-	// Function for input our data
-	public static void printInputMatrix() {
+	// Initialize Matrix
+	public static void initialMatix() {
 		try {
 			File fileName = new File(pathName);
 			Scanner fileInput = new Scanner(fileName);
@@ -115,6 +113,17 @@ public class CWGTestRun {
 					X[i][j] = X[j][i];
 				}
 			}
+			fileInput.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	// Function for input our data
+	public static void printInputMatrix() {
+		try {
+			
 			
 			for (int i = 0; i < numVertices; i++) {
 				for (int j = 0; j < numVertices; j++) {
@@ -122,20 +131,6 @@ public class CWGTestRun {
 				}
 				System.out.println();
 			}
-			
-			//int[] elementValue = new int[numEdges*2];
-			
-			//for (int i = 0; i < numEdges*2; i++) {
-			//	elementValue[i] = fileInput.nextInt();
-			//}
-			
-			fileInput.close();
-			//System.out.println(numVertices);
-			//System.out.println(numEdges);
-			
-			//for (int j = 0; j < numEdges*2; j++) {
-			//	System.out.println(elementValue[j]);
-			//}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -194,10 +189,9 @@ public class CWGTestRun {
 
 			// Objectives
 			IloLinearNumExpr objective = cplex.linearNumExpr();
+			int y = 0;
 			for (int i = 0; i < numVertices - 1; i++) {
 				for (int j = i + 1; j < numVertices; j++) {
-
-					int y = -1;
 
 					// Check if the edge exists
 					if (checkExist(i, j)) {
@@ -227,6 +221,7 @@ public class CWGTestRun {
 
 			if (cplex.solve()) {
 				System.out.println("Objective = " + cplex.getObjValue());
+				System.out.println();
 			} else {
 				System.out.println("It cannot be solved");
 			}
