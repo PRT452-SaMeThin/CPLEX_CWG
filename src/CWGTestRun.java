@@ -8,9 +8,10 @@ public class CWGTestRun {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		printFileData();
 		initialMatix();
 		printInputMatrix();
-		printMatrixList();
+		printFixList();
 		model1();
 	}
 
@@ -18,9 +19,9 @@ public class CWGTestRun {
 	public static int[][] X;
 	public static int numVertices;
 	public static int numEdges;
-	static String pathName = "/Users/Sancho/Desktop/test.txt";
+	static String pathName = "/Users/Sancho/Desktop/test0.txt";
 
-	public static void printMatrixList() {
+	public static void printFixList() {
 
 		for (int i = 0; i < numVertices; i++) {
 			for (int k = i + 1; k < numVertices; k++) {
@@ -37,6 +38,7 @@ public class CWGTestRun {
 				}
 			}
 		}
+		System.out.println();
 	}
 	
 	public static void countNum() {
@@ -120,6 +122,7 @@ public class CWGTestRun {
 		}
 		
 	}
+	
 	// Function for input our data
 	public static void printInputMatrix() {
 		try {
@@ -131,6 +134,7 @@ public class CWGTestRun {
 				}
 				System.out.println();
 			}
+			System.out.println();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
