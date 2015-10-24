@@ -52,11 +52,12 @@ public class CWGAlgoTest {
 	public void testSolveCWG() {
 				    try{
 				        int ouput[][] = {{3,3},{0,1},{0,2},{1,2}};
-				        CWGAlgo object4 = new CWGAlgo();
+				        CWGIOData object4 = new CWGIOData();
 				        object4.initialMatrix();	
 				        object4.printFileData();
 				        object4.printInputMatrix();
-				        object4.printFixList();
+				        CWGAlgo object5 = new CWGAlgo();
+				        object5.printFixList();
 				      
 				    }catch(Exception e){
 				        System.out.println("Error in testModel1()");
@@ -70,10 +71,11 @@ public class CWGAlgoTest {
 	public void testCheckEdgeExist() {
 					try {
 				            int i=0,j=1;
-				            CWGAlgo object3 = new CWGAlgo();
+				            CWGIOData object3 = new CWGIOData();
 				            object3.printFileData();
 				            object3.initialMatrix();
-				            assertTrue(object3.checkExist(i,j));
+				            CWGAlgo obj = new CWGAlgo();
+				            assertTrue(obj.checkExist(i,j));
 				        }catch(Exception e){
 				             System.out.println("Error in testCheckExist()");
 				        }
