@@ -44,20 +44,25 @@ public class CWGAlgoTest {
 	public void tearDown() throws Exception {
 	}
 
-	/**
-	 * Test method for {@link CWGAlgo#printFixList()}.
-	 */
-	@Test
-	public void testPrintFixList() {
-		fail("Not yet implemented");
-	}
-
+	
 	/**
 	 * Test method for {@link CWGAlgo#solveCWG()}.
 	 */
 	@Test
 	public void testSolveCWG() {
-		fail("Not yet implemented");
+		 @Test
+    public void testModel1(){
+			    try{
+			        int ouput[][] = {{3,3},{0,1},{0,2},{1,2}};
+			        CWGAlgo object4 = new CWGAlgo();
+			        object4.initialMatrix();	
+			        object4.printFileData();
+			        object4.printInputMatrix();
+			        object4.printFixList();
+			      
+			    }catch(Exception e){
+			        System.out.println("Error in testModel1()");
+			    }
 	}
 
 	/**
@@ -65,7 +70,15 @@ public class CWGAlgoTest {
 	 */
 	@Test
 	public void testCheckEdgeExist() {
-		fail("Not yet implemented");
+					try {
+				            int i=0,j=1;
+				            CWGAlgo object3 = new CWGAlgo();
+				            object3.printFileData();
+				            object3.initialMatrix();
+				            assertTrue(object3.checkExist(i,j));
+				        }catch(Exception e){
+				             System.out.println("Error in testCheckExist()");
+				        }
 	}
 
 }
