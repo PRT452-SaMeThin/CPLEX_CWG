@@ -65,8 +65,8 @@ public class CWGIODataTest {
 								                        else
 								                        	 x[m][n]=0;
 				                					 }
-				               x[m][m]=0;
-				                }
+				               						x[m][m]=0;
+				        				  }
 				             CWGIOData object1 = new CWGIODatan();
 				             object1.initialMatrix();
 				             Assert.assertArrayEquals(input, CWGIOData.X);
