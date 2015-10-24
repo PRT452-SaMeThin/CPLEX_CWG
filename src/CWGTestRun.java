@@ -6,14 +6,7 @@ import ilog.cplex.*;
 
 public class CWGTestRun {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		printFileData();
-		initialMatix();
-		printInputMatrix();
-		printFixList();
-		model1();
-	}
+
 
 	//private static int Ncol = numVertices * (numVertices - 1) / 2;
 	public static int[][] X;
