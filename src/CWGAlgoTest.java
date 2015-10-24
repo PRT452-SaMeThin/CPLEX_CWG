@@ -50,19 +50,17 @@ public class CWGAlgoTest {
 	 */
 	@Test
 	public void testSolveCWG() {
-		 @Test
-    public void testModel1(){
-			    try{
-			        int ouput[][] = {{3,3},{0,1},{0,2},{1,2}};
-			        CWGAlgo object4 = new CWGAlgo();
-			        object4.initialMatrix();	
-			        object4.printFileData();
-			        object4.printInputMatrix();
-			        object4.printFixList();
-			      
-			    }catch(Exception e){
-			        System.out.println("Error in testModel1()");
-			    }
+				    try{
+				        int ouput[][] = {{3,3},{0,1},{0,2},{1,2}};
+				        CWGAlgo object4 = new CWGAlgo();
+				        object4.initialMatrix();	
+				        object4.printFileData();
+				        object4.printInputMatrix();
+				        object4.printFixList();
+				      
+				    }catch(Exception e){
+				        System.out.println("Error in testModel1()");
+				    }
 	}
 
 	/**
