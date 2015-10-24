@@ -4,23 +4,35 @@ import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
 
 public class CWGAlgo {
+	
+	static int numVertices = CWGGlobal.numVertices;
+	static int[][] X = CWGGlobal.X;
 
-	// The input data will be converted into some structure that we can use in
-	// CPLEX
-	public void convertInput() {
+	public static void printFixList() {
 
+		for (int i = 0; i < numVertices; i++) {
+			for (int k = i + 1; k < numVertices; k++) {
+				for (int j = 0; j < numVertices; j++) {
+					if (i != j && j != k) {
+						if (X[i][k] > X[i][j] + X[j][k]) {
+							System.out.print(X[i][k] + "<=" + X[i][j] + "+" + X[j][k] + ": ");
+							System.out.println("X[" + i + "][" + k +"] <= X[" + i + "][" + j + "] + X["
+									+ j + "][" + k + "]");
+						}
+						
+					}
+
+				}
+			}
+		}
+		System.out.println();
 	}
-
-	// By running this function, the problem can be solved
-	public void solveAlgo() {
-
-	}
-
-	// CPLEX implement
-	public static void model1() {
+	
+	public static void solveCWG() {
 		try {
 			IloCplex cplex = new IloCplex();
-			int numVertices = CWGIOData.getNumVertices();
+			cplex.getNcols();
+			cplex.getNrows();
 
 			// Variables
 			IloNumVar[][] x = new IloNumVar[numVertices][numVertices];
@@ -32,13 +44,12 @@ public class CWGAlgo {
 
 			// Objectives
 			IloLinearNumExpr objective = cplex.linearNumExpr();
+			int y = 0;
 			for (int i = 0; i < numVertices - 1; i++) {
 				for (int j = i + 1; j < numVertices; j++) {
 
-					int y = -1;
-
 					// Check if the edge exists
-					if (checkExist(i, j)) {
+					if (checkEdgeExist(i, j)) {
 						y = 1;
 					} else {
 						y = -1;
@@ -65,6 +76,7 @@ public class CWGAlgo {
 
 			if (cplex.solve()) {
 				System.out.println("Objective = " + cplex.getObjValue());
+				System.out.println();
 			} else {
 				System.out.println("It cannot be solved");
 			}
@@ -76,8 +88,7 @@ public class CWGAlgo {
 		}
 	}
 
-	public static boolean checkExist(int i, int j) {
-		int[][] X = CWGIOData.getX();
+	public static boolean checkEdgeExist(int i, int j) {
 		if (X[i][j] == 1) {
 			return false;
 		} else {

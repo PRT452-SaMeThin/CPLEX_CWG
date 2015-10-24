@@ -2,13 +2,12 @@
 public class CWGMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		CWGTestRun test = new CWGTestRun();
-		test.printFileData();
-		test.initialMatix();
-		test.printInputMatrix();
-		test.printFixList();
-		test.model1();
+		CWGIOData.printFileData();
+		CWGIOData.initialMatix();
+		CWGIOData.printInputMatrix();
+		CWGAlgo.printFixList();
+		CWGAlgo.solveCWG();
+		CWGCPLEXTestCase.cplexTest();
 	}
 	
 
