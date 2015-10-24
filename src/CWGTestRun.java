@@ -1,3 +1,4 @@
+// This Class is just for testing purpose. Please ignore it.
 
 public class CWGTestRun {
 	

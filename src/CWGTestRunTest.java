@@ -1,3 +1,5 @@
+// The class CWGTestRun is only for testing purpose. Please ignore both that class and this.
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
