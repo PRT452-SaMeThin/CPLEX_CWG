@@ -5,6 +5,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import java.io.*;
+import java.util.Scanner;
 
 public class CWGIODataTest {
 
@@ -61,17 +64,19 @@ public class CWGIODataTest {
 				              for(int m=0;m<vertices;m++){
 				                	  for(int n =0;n<vertices;n++){
 								                        if(x[m][n]==0)
-								                        	 x[m][n]=1;
+								                        		 x[m][n]=1;
 								                        else
-								                        	 x[m][n]=0;
+								                        		 x[m][n]=0;
 				                					 }
-				               						x[m][m]=0;
+				               					x[m][m]=0;
 				        				  }
-				             CWGIOData object1 = new CWGIODatan();
-				             object1.initialMatrix();
-				             Assert.assertArrayEquals(input, CWGIOData.X);
+				             CWGIOData object1 = new CWGIOData();
+				             object1.initialMatix();
+				             Assert.assertArrayEquals(x, CWGIOData.X);
 				  }catch(Exception e){
-				             System.out.println("Error in testInitialMatrix()")
+				             System.out.println("Error in testInitialMatrix()");
 			        	
 		  }
+
+        }
 }
