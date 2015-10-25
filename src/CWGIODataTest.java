@@ -30,16 +30,16 @@ public class CWGIODataTest {
 	@Test
 	public void testPrintFileData() {
 					try{
-					          String sourcePath= "/Users/Mrinalini/Desktop/Test1.txt";
+					          String sourcePath= CWGGlobal.pathName;
 					          FileReader file =new FileReader(sourcePath);
 					          BufferedReader source = new BufferedReader(file);
 					          String a,input="";
 					          while((a=source.readLine())!=null){
 					        					  input= input+a+'\n';
 					        				     }
-					          CWGIOData object2 = new CWGIOData();
-					          object2.printFileData();
-					          assertEquals(input,CWGIOData.aString);   
+					          CWGIOData.printFileData();
+					          assertEquals(input,CWGIOData.aString); 
+					          source.close();
 					    }catch(Exception e){
 					           System.out.println("Error in testPrintFileData()");
 					    }
@@ -48,11 +48,11 @@ public class CWGIODataTest {
 	@Test
 	public void testInitialMatix() {
 				try{
-					     String sourcePath= "/Users/Mrinalini/Desktop/Test1.txt";
+					     String sourcePath= CWGGlobal.pathName;
 				             Scanner input = new Scanner(new File(sourcePath));
 				             int vertices = input.nextInt();
 				             int edges= input.nextInt();
-				             int x[][]= new int[edges][edges];
+				             int x[][]= new int[vertices][vertices];
 				             for (int i = 0; i <edges; i++) {
 				        					  x[input.nextInt()][input.nextInt()]=1; 
 				        				     }
@@ -70,9 +70,9 @@ public class CWGIODataTest {
 				                					 }
 				               					x[m][m]=0;
 				        				  }
-				             CWGIOData object1 = new CWGIOData();
-				             object1.initialMatix();
-				             Assert.assertArrayEquals(x, CWGIOData.X);
+				             CWGIOData.initialMatix();
+				             assertArrayEquals(x, CWGGlobal.X);
+				             input.close();
 				  }catch(Exception e){
 				             System.out.println("Error in testInitialMatrix()");
 			        	
