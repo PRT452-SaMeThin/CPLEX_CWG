@@ -11,11 +11,12 @@ import java.util.Scanner;
 public class CWGIOData {
 
 	// Function for output data in file
+	public String aString = "";
 	public static void printFileData() {
 		try {
 			File fileName = new File(CWGGlobal.pathName);
 			Scanner fileInput = new Scanner(fileName);
-			String aString = "";
+			
 			boolean Hola = true;
 			while (fileInput.hasNext()) {
 
