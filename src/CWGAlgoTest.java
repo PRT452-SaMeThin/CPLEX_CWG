@@ -75,7 +75,7 @@ public class CWGAlgoTest {
 				            object3.printFileData();
 				            object3.initialMatix();
 				            CWGAlgo obj = new CWGAlgo();
-				            assertTrue(obj.checkExist(i,j));
+				            assertTrue(obj.checkEdgeExist(i,j));
 				        }catch(Exception e){
 				             System.out.println("Error in testCheckExist()");
 				        }
