@@ -53,7 +53,7 @@ public class CWGAlgoTest {
 				    try{
 				        int ouput[][] = {{3,3},{0,1},{0,2},{1,2}};
 				        CWGIOData object4 = new CWGIOData();
-				        object4.initialMatrix();	
+				        object4.initialMatix();	
 				        object4.printFileData();
 				        object4.printInputMatrix();
 				        CWGAlgo object5 = new CWGAlgo();
@@ -73,7 +73,7 @@ public class CWGAlgoTest {
 				            int i=0,j=1;
 				            CWGIOData object3 = new CWGIOData();
 				            object3.printFileData();
-				            object3.initialMatrix();
+				            object3.initialMatix();
 				            CWGAlgo obj = new CWGAlgo();
 				            assertTrue(obj.checkExist(i,j));
 				        }catch(Exception e){
